@@ -116,6 +116,6 @@ def get_actor_inner(df:pd.DataFrame, platform, year):
     # Seleccionar el actor con la mayor cantidad de ocurrencias
     most_common_cast = count_cast.idxmax()
 
-    print("El actor que más se repite es:", most_common_cast)
+    
 
     return most_common_cast
