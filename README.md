@@ -1,6 +1,6 @@
 ![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
 
-# Proyecto ML_OPS de Noelia!  👻👻
+# Noelia's ML_OPS Project!  👻👻
 
 
 * Movie recommendation system using SVD and surprise-scikit
@@ -35,18 +35,18 @@ There are 4 datasets on movies and series on different streaming platforms:
 
 ### <ins>**Columns description**</ins>
 
-* show_id: cadena de caracteres que inicia con la letra `s`, seguida de `numeros`
+* show_id: String s+number e.g: s125
 * type: Movie/Tv Show
-* title: Nombre de la serie o pelicula
-* director: director de la serie o pelicula
-* cast: reparto de actores/actrices
-* country: pais de la filmacion	
-* date_added: fecha en que fue agregada a la plataforma	
-* release_year: año de estreno original
-* rating: clasificación (todo publico/+13...etc)
-* duration: duracion, en minutos o en season/s
-* listed_in: categoria de la pelicula (drama/comedia...)
-* description: descripcion de la pelicula
+* title: Movie name
+* director: director
+* cast: cast
+* country: country
+* date_added: date added to platform
+* release_year: release year
+* rating: +13/+18/etc
+* duration: duration (180 min or 3 seasons)
+* listed_in: movie category (romance/drama/horror/...)
+* description: movie description
 
 ---
 
