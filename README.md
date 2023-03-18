@@ -51,9 +51,9 @@ There are 4 datasets on movies and series on different streaming platforms:
 
 ---
 
-## <ins>**Basic transformations performed**</ins>
+## <ins>🔧 **Basic transformations performed**</ins>
 
-### **Notebook: clean_platform.ipynb**<br>
+### 🔹**Notebook: clean_platform.ipynb**<br>
 
 1. A new `id` column was added, formed by the first letter of the platform and the `show_id`
 2. Null values from `rating` column were replaced to "G" --> Mature audience
@@ -72,7 +72,7 @@ Note: *When work locally, I have saved each individual cleaned dataframe to a se
 
 ---
 
-### **Notebook: clean_rating.ipynb**<br>
+### 🔹**Notebook: clean_rating.ipynb**<br>
 > We need to concatenate the user reviews information, which is available in 8 .csv files
 1. No missing data
 2. We upload the 8 files and save the data in a big dataframe
@@ -82,7 +82,7 @@ Note: *When work locally, I have saved each individual cleaned dataframe to a se
 
 ---
 
-### **Notebook: load_score_to_platform_data.ipynb**
+### 🔹**Notebook: load_score_to_platform_data.ipynb**
 We only merge users reviews with movie information, and save to `/data/clean/all_together_with_score`
 
 ---
