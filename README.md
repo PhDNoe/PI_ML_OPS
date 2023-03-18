@@ -3,13 +3,14 @@
 # Noelia's ML_OPS Project!  👻👻
 
 
-* Movie recommendation system using SVD and surprise-scikit
-* API REST developed using FASTAPI
+### ✅ Movie recommendation system using SVD and surprise-scikit
+### ✅ API REST developed using FASTAPI
 
 
 ![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
 
-# **Part 1: Initial Exploratory Data Analysis (EDA) / Data Cleaning / Data Transformation**
+# **Part 1: Initial Exploratory Data Analysis (EDA)** 
+## **Data Cleaning / Data Transformation**
 ![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
 
 <br>
@@ -83,5 +84,146 @@ Note: *When work locally, I have saved each individual cleaned dataframe to a se
 
 ### **Notebook: load_score_to_platform_data.ipynb**
 We only merge users reviews with movie information, and save to `/data/clean/all_together_with_score`
+
+---
+
+![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
+# API REST
+### Created using fastapi.
+
+## 🟥 The API has not yet been deployed. Currently, it is running on localhost.
+
+
+### The available routes are detailed below:
+
+<br>
+
+---
+
+🟢 **GET /api**
+> The API will return some info about other routes
+
+```json
+{
+    "routes": {
+        "/api/max_duration": "Movie with longer duration with optional filters of year, platform and duration_type",
+        "/api/score_count": "Number of films by platform with a score greater than XX in a given year",
+        "/api/count_platform": "Number of movies per platform. The platform must be specified.",
+        "/api/actor": "Actor who appears the most times according to platform and year. "
+    }
+}
+
+```
+
+---
+
+🟢 **GET /api/max_duration**
+> If called without query parameters, the API will return the movie with the longest duration across all platforms, years, and duration types (seasons or minutes)
+
+```json
+{
+    "movie": "soothing surf at del norte for sleep black screen"
+}
+
+```
+
+🟢 **GET /api/max_duration?year=2019**
+> The API will return the movie with the longest duration across all platforms and duration types (seasons or minutes) for the 2019 year
+```json
+{
+    "movie": "box fan medium  8 hours for sleep"
+}
+
+```
+
+
+🟢 **GET /api/max_duration?platform=netflix**
+> The API will return the movie with the longest duration on Netflix across all years and duration types.
+```json
+{
+    "movie": "box fan medium  8 hours for sleep"
+}
+
+```
+
+🟢 **GET /api/max_duration?year=2020&platform=Netflix&duration_type=seasons**
+> The API will return the Netflix movie with the longest duration measured in seasons for the year 2019
+```json
+{
+    "movie": "grey's anatomy"
+}
+```
+
+🟡 **If any of the above queries do not match any results, the API will return:**
+```json
+{
+    "message": "No results"
+}
+```
+
+---
+
+🟢 **GET /api/score_count?platform=Netflix&scored=3.6&year=2020**
+> The API will return the number of films by platform=Netflix  with a score greater than XX=3.6 in a given year (2020)
+```json
+{
+    "number_of_films": 71
+}
+```
+
+---
+
+🟢 **GET api/count_platform?platform=amazon**
+> The API will return Number of movies per platform (Amazon)
+```json
+{
+    "number_of_films": 9668
+}
+```
+
+🟡 **If the platform is not Netflix, Amazon, Hulu or Disney (or any variations of their names in lowercase), the API will return**
+
+```json
+{
+    "detail": [
+        {
+            "loc": [
+                "query",
+                "platform"
+            ],
+            "msg": "value is not a valid enumeration member; permitted: 'disney', 'netflix', 'amazon', 'hulu', 'Disney', 'Netflix', 'Amazon', 'Hulu'",
+            "type": "type_error.enum",
+            "ctx": {
+                "enum_values": [
+                    "disney",
+                    "netflix",
+                    "amazon",
+                    "hulu",
+                    "Disney",
+                    "Netflix",
+                    "Amazon",
+                    "Hulu"
+                ]
+            }
+        }
+    ]
+}
+```
+
+---
+🟢 **GET /api/actor?platform=Netflix&year=2019**
+> The API will return the actor who appears the most times according to platform and year specified.
+```json
+{
+    "actor": "vincent tong"
+}
+```
+
+🟡 **If the query do not match any results, the API will return:**
+```json
+{
+    "message": "No results"
+}
+```
 
 ---
