@@ -1,6 +1,9 @@
 /src/
 Material de apoyo.md
-Readme.md
 MLOpsReviews-20230313T220019Z-001.zip
 /data/clean/all_ratings.csv
+/data/clean/Amazon_clean
+/data/clean/Disney_clean
+/data/clean/Hulu_clean
+/data/clean/Netflix_clean
 /FASTAPI/__pycache__
