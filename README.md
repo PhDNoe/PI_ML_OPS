@@ -3,8 +3,8 @@
 # Proyecto ML_OPS de Noelia!  👻👻
 
 
-* Sistema de recomendación de Películas utilizando SVD y surprise-scikit
-* API REST utilizando FASTAPI
+* Movie recommendation system using SVD and surprise-scikit
+* API REST developed using FASTAPI
 
 
 ![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
