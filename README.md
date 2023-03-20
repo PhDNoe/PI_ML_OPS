@@ -91,18 +91,23 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 # API REST
 ### Created using fastapi.
 
-## 🟥 The API has not yet been deployed. Currently, it is running on localhost.
+## 🟩 The API has been deployed in Render. 
 
+### ➡️ Documentation: [Api documentation](https://noeliamovieapideploy.onrender.com/docs)
 
-### The available routes are detailed below:
+### ➡️ Public repository to deploy the API in render: [Api Github repo](https://github.com/PhDNoe/Movie_API_PI_MLOPS)
+
+---
+
+## 🟪 Available routes:
 
 <br>
 
 ---
 
 🟢 **GET /api**
-> The API will return some info about other routes
-
+> The API will return some info about other routes <br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api
 ```json
 {
     "routes": {
@@ -118,7 +123,8 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 ---
 
 🟢 **GET /api/max_duration**
-> If called without query parameters, the API will return the movie with the longest duration across all platforms, years, and duration types (seasons or minutes)
+> If called without query parameters, the API will return the movie with the longest duration across all platforms, years, and duration types (seasons or minutes)<br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api/max_duration
 
 ```json
 {
@@ -128,7 +134,8 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 ```
 
 🟢 **GET /api/max_duration?year=2019**
-> The API will return the movie with the longest duration across all platforms and duration types (seasons or minutes) for the 2019 year
+> The API will return the movie with the longest duration across all platforms and duration types (seasons or minutes) for the 2019 year <br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api/max_duration?year=2019
 ```json
 {
     "movie": "box fan medium  8 hours for sleep"
@@ -138,7 +145,8 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 
 
 🟢 **GET /api/max_duration?platform=netflix**
-> The API will return the movie with the longest duration on Netflix across all years and duration types.
+> The API will return the movie with the longest duration on Netflix across all years and duration types.<br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api/max_duration?platform=netflix
 ```json
 {
     "movie": "box fan medium  8 hours for sleep"
@@ -147,7 +155,8 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 ```
 
 🟢 **GET /api/max_duration?year=2020&platform=Netflix&duration_type=seasons**
-> The API will return the Netflix movie with the longest duration measured in seasons for the year 2019
+> The API will return the Netflix movie with the longest duration measured in seasons for the year 2019 <br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api/max_duration?year=2020&platform=Netflix&duration_type=seasons
 ```json
 {
     "movie": "grey's anatomy"
@@ -164,7 +173,8 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 ---
 
 🟢 **GET /api/score_count?platform=Netflix&scored=3.6&year=2020**
-> The API will return the number of films by platform=Netflix  with a score greater than XX=3.6 in a given year (2020)
+> The API will return the number of films by platform=Netflix  with a score greater than XX=3.6 in a given year (2020)<br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api/score_count?platform=Netflix&scored=3.6&year=2020
 ```json
 {
     "number_of_films": 71
@@ -174,7 +184,8 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 ---
 
 🟢 **GET api/count_platform?platform=amazon**
-> The API will return Number of movies per platform (Amazon)
+> The API will return Number of movies per platform (Amazon)<br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api/count_platform?platform=amazon
 ```json
 {
     "number_of_films": 9668
@@ -212,7 +223,8 @@ We only merge users reviews with movie information, and save to `/data/clean/all
 
 ---
 🟢 **GET /api/actor?platform=Netflix&year=2019**
-> The API will return the actor who appears the most times according to platform and year specified.
+> The API will return the actor who appears the most times according to platform and year specified.<br>
+**Full path:** https://noeliamovieapideploy.onrender.com/api/actor?platform=Netflix&year=2019
 ```json
 {
     "actor": "vincent tong"
