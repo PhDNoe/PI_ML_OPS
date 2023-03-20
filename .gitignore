@@ -7,6 +7,7 @@ MLOpsReviews-20230313T220019Z-001.zip
 /data/clean/Disney_clean.csv
 /data/clean/Hulu_clean.csv
 /data/clean/Netflix_clean.csv
-/data/clean/filer/all_rating_filter_by_movie.csv
-/data/clean/filer/all_rating_filter_by_platform_by_movie.csv
+/data/clean/filter/all_rating_filter_by_movie.csv
+/data/clean/filter/all_rating_filter_by_platform_by_movie.csv
+/data/clean/filter/all_rating_filtered.csv
 /FASTAPI/__pycache__
