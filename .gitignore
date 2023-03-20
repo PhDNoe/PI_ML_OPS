@@ -2,8 +2,11 @@
 Material de apoyo.md
 MLOpsReviews-20230313T220019Z-001.zip
 /data/clean/all_ratings.csv
+/data/clean/all_ratings_with_title.csv
 /data/clean/Amazon_clean.csv
 /data/clean/Disney_clean.csv
 /data/clean/Hulu_clean.csv
 /data/clean/Netflix_clean.csv
+/data/clean/filer/all_rating_filter_by_movie.csv
+/data/clean/filer/all_rating_filter_by_platform_by_movie.csv
 /FASTAPI/__pycache__
