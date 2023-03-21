@@ -2,10 +2,23 @@
 
 # Noelia's ML_OPS Project!  👻👻
 
+---
+## In this project, we put ourselves in the shoes of a data scientist who needs to take charge of a movie recommendation system for streaming platforms like Netflix, Amazon Prime, Disney Plus, and Hulu. The problem is that the data is unprocessed, there are no automated processes, and so on. Our task is to quickly perform data engineering work and have an MVP (minimum viable product) ready in about a week.
+<img src="./img/banner_streaming.png"/>
 
-### ✅ Movie recommendation system using SVD and surprise-scikit
-### ✅ API REST developed using FASTAPI
+![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
+<br>
+<br>
+<br>
 
+# This readme is divided into three parts:
+## ✅ Exploratory data analysis (EDA), data cleaning, and data preparation
+## ✅ Development of an API REST using FASTAPI (and its deployment)
+## ✅ Movie Recommendation system implementation using the scikit-surprise library
+
+<br>
+<br>
+<br>
 
 ![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
 
@@ -86,9 +99,14 @@ Note: *When work locally, I have saved each individual cleaned dataframe to a se
 We only merge users reviews with movie information, and save to `/data/clean/all_together_with_score`
 
 ---
+<br>
+<br>
 
 ![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
-# API REST
+<br>
+<br>
+
+# Part 2: API REST
 ### Created using fastapi.
 
 ## 🟩 The API has been deployed in Render. 
@@ -237,5 +255,109 @@ We only merge users reviews with movie information, and save to `/data/clean/all
     "message": "No results"
 }
 ```
+<br>
+<br>
+<br>
+
+![divider](https://user-images.githubusercontent.com/7065401/52071927-c1cd7100-2562-11e9-908a-dde91ba14e59.png)
+<br>
+<br>
+
+# Part 3: Movie Recommendation System
+## Created using scikit-surprise library
+
+
+<br>
+
+> In this project a movie recommendation system was developed using the collaborative filtering technique through Singular Value Decomposition
+
+#### **Remember:**
+*A recommendation system implemented with collaborative filtering is a type of system that uses data from multiple users to recommend items to a particular user. It works by analyzing user behavior and preferences, and identifying patterns in the behavior of similar users. Based on these patterns, the system can predict which items a user might be interested in and recommend them to the user. Collaborative filtering can be implemented using different techniques, such as user-based or item-based filtering, and can be used in various applications, such as e-commerce, social media, and entertainment platforms*
+
+---
+
+### We are facing several problems with the dataset used for our recommendation system:
+
+* The dataset is severely imbalanced, with many more reviews with 3, 4, and 5 ratings than reviews with 1 and 2 ratings. This will cause the recommendation system (if no balancing technique is used) to have a bias towards higher ratings and tend to recommend all movies.
+
+
+<img src="./img/unbalanced_data.png" width = "500px" style="margin:0% 25%; padding:30px" />
+
+
+* Another issue is that there are many users who have made very few reviews. The type of recommendation system we are implementing requires users to express their preferences to recommend future items based on their similarity in tastes with other users.
+* There are several outliers among users, with one user having more than 18,000 recommendations.
+
+---
+<br>
+
+### We tried different strategies to achieve a robust recommendation system that can address the issues mentioned above.
+
+#### Finally, we decided to:
+
+* Train a model only with users who have made at least Q1=15 recommendations (where Q1 is the first quartile of the data). This way, we removed users with very few reviews.
+* We also removed the upper outliers, i.e., those users with a number of reviews greater than (Q3 + 1.5 IQR) = 207 reviews, where Q3 is the third quartile and IQR is the interquartile range.
+* We created 10 artificial datasets using oversampling for the underrepresented classes and subsampling for the majority classes. This way, we ensured balanced classes.
+* Each dataset was split into a training set and a test set (15% for the test set).
+* We trained an ensemble of 10 SVD models, each using a different subset of data. The final recommendation decision was based on voting (more than half, plus one)
+
+
+```python
+def make_ensemble_predictions(userId, movieId):
+    """
+        Ensemble of 10 SVD models
+    """
+    preds = []
+    for i in range(10):
+        p1 = models[i].predict(userId, movieId).est
+        preds.append(p1)
+    
+   
+    preds = np.array(preds)
+    votes = preds>2.5
+    nvotes = np.count_nonzero(votes)
+    if nvotes>4:
+        return "Recomended Movie"
+    else:
+        return "not recommended Movie"
+```
+
+---
+### RMSE across all test datasets
+
+#### We conducted predictions across all the test sets, and the results were not as expected
+
+```python
+from surprise import accuracy
+# predictions across all models
+all_preds = []
+for idx, model in enumerate(models):
+    all_preds.append(model.test(train_test_sets[i][1]))
+
+all_rmse = []
+for p in all_preds:
+    all_rmse.append(accuracy.rmse(p))
+
+
+```
+
+#### The RMSE values obtained on the test sets for each of the models were:
+
+```python
+RMSE: 1.2439
+RMSE: 1.2438
+RMSE: 1.2439
+RMSE: 1.2439
+RMSE: 1.2438
+RMSE: 1.2439
+RMSE: 1.2438
+RMSE: 1.2440
+RMSE: 1.2438
+RMSE: 1.2439
+
+```
+
+> These results mean that the error in recommending a movie that a user would rate as 3.5 (recommended movie) could be scored on the lower end as 2.2 (not recommended movie).
+
+> Another similar example, a movie rated 2.3, could be scored as 3.5 and recommended to a user who clearly has no preference for this movie.
 
 ---
